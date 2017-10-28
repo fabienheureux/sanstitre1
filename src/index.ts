@@ -1,15 +1,35 @@
-import { join } from 'lodash'
+import {
+  BoxGeometry,
+  Line,
+  Mesh,
+  MeshBasicMaterial,
+  PerspectiveCamera,
+  Scene,
+  Vector3,
+  Geometry,
+  LineBasicMaterial,
+  WebGLRenderer,
+} from 'three'
+
 import './index.css'
-export interface Test { copmiler: string; framework: string; }
 
-function component() {
-  var element = document.createElement('div')
+const scene = new Scene()
+const renderer = new WebGLRenderer()
+const camera = new PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 500)
+const geometry = new Geometry()
+const material = new LineBasicMaterial({ color: 0x0000ff })
 
-  // Lodash, currently included via a script, is required for this line to work
-  element.innerHTML = join(['Hello', 'webpack'], ' ')
+camera.position.set(0, 0, 100)
+camera.lookAt(new Vector3(0, 0, 0))
 
-  return element
-}
+geometry.vertices.push(new Vector3(-10, 0, 0))
+geometry.vertices.push(new Vector3(0, 10, 0))
+geometry.vertices.push(new Vector3(10, 0, 0))
+renderer.setSize( window.innerWidth, window.innerHeight )
 
-document.body.appendChild(component())
+const line = new Line(geometry, material)
+scene.add(line)
 
+renderer.render(scene, camera)
+
+document.body.appendChild( renderer.domElement )
