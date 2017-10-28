@@ -10,7 +10,7 @@ module.exports = {
     contentBase: './dist',
     hot: true
   },
-	resolve: {
+  resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"]
   },
   plugins: [
@@ -27,12 +27,12 @@ module.exports = {
   },
   module: {
     rules: [
-			{
-				test: /\.tsx?$/,
-				use: [
-				  "awesome-typescript-loader"
-				]
-			},
+      {
+        test: /\.tsx?$/,
+        use: [
+          "awesome-typescript-loader"
+        ]
+      },
       {
         enforce: "pre",
         test: /\.js$/,
